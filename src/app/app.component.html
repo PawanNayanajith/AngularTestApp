@@ -1,20 +1,100 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<div class="container">
+  <h2>Empoloyee Details</h2>
+  <br />
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addEmployee">Add User</button>
+  <br /><br />
+  <br />
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Email</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let role of roles">
+        <td>{{role.id}}</td>
+        <td>{{role.roleName}}</td>
+        <td>john@example.com</td>
+        <td><button type="button" class="btn btn-success">Edit</button></td>
+        <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteEmployee">Delete</button></td>
+      </tr>
+      <tr>
+        <td>Mary</td>
+        <td>Moe</td>
+        <td>mary@example.com</td>
+        <td><button type="button" class="btn btn-success">Edit</button></td>
+        <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteEmployee">Delete</button></td>
+      </tr>
+      <tr>
+        <td>July</td>
+        <td>Dooley</td>
+        <td>july@example.com</td>
+        <td><button type="button" class="btn btn-success">Edit</button></td>
+        <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteEmployee">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
 
+
+
+<!-- Modal Add -->
+<div class="modal fade" id="addEmployee" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Add Employee Details</h4>
+      </div>
+      <div class="modal-body">
+        <form #roleForm="ngForm">
+          <div class="form-group">
+            <label for="id">Role Id:</label>
+            <input type="text" class="form-control" [ngModel]="roleObj.id" [ngModelOptions]="{standalone: true}">
+          </div>
+          <div class="form-group">
+            <label for="name">Role Name:</label>
+            <input type="text" class="form-control" [(ngModel)]="roleObj.roleName" [ngModelOptions]="{standalone: true}">
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="addRole()">Add</button>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>
+
+<!-- Modal Delete -->
+<div class="modal fade" id="deleteEmployee" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Delete Employee Details</h4>
+      </div>
+      <div class="modal-body">
+        <p class="modal-body">Are You Sure You Want To Delete?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Delete</button>
+      </div>
+    </div>
+
+  </div>
+
+
+
+</div>
